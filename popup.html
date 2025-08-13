@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>OptionsPro - Options Strategy Analyzer</title>
+    <link rel="stylesheet" href="css/popup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">📊</div>
+                <div>
+                    <h1>OptionsPro</h1>
+                    <p>Options Strategy Analyzer</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="settingsBtn" class="icon-btn" title="Settings">
+                    ⚙️
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="strategies">Strategies</button>
+            <button class="tab-btn" data-tab="calculator">Calculator</button>
+            <button class="tab-btn" data-tab="education">Education</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Strategies Tab -->
+            <div id="strategies" class="tab-panel active">
+                <div class="strategy-selector">
+                    <label for="strategySelect">Select Strategy:</label>
+                    <select id="strategySelect">
+                        <option value="covered-call">Covered Call</option>
+                        <option value="protective-put">Protective Put</option>
+                        <option value="straddle">Straddle</option>
+                        <option value="strangle">Strangle</option>
+                        <option value="iron-condor">Iron Condor</option>
+                        <option value="butterfly">Butterfly Spread</option>
+                        <option value="calendar">Calendar Spread</option>
+                        <option value="vertical-spread">Vertical Spread</option>
+                    </select>
+                </div>
+
+                <div class="strategy-card">
+                    <div class="strategy-header">
+                        <h3 id="strategyName">Covered Call</h3>
+                        <div class="strategy-difficulty" id="strategyDifficulty">Beginner</div>
+                    </div>
+                    <div class="strategy-description" id="strategyDescription">
+                        A covered call involves holding a long position in a stock and selling call options on the same stock to generate income.
+                    </div>
+                    
+                    <div class="strategy-metrics">
+                        <div class="metric">
+                            <div class="metric-label">Market Outlook</div>
+                            <div class="metric-value" id="marketOutlook">Neutral to Bullish</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Max Profit</div>
+                            <div class="metric-value" id="maxProfit">Limited</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Max Loss</div>
+                            <div class="metric-value" id="maxLoss">Significant</div>
+                        </div>
+                    </div>
+
+                    <div class="strategy-setup">
+                        <h4>Setup</h4>
+                        <div class="setup-steps" id="setupSteps">
+                            <div class="step">• Buy 100 shares of stock</div>
+                            <div class="step">• Sell 1 call option (usually OTM)</div>
+                            <div class="step">• Collect premium from option sale</div>
+                        </div>
+                    </div>
+
+                    <div class="payoff-diagram">
+                        <h4>Payoff Diagram</h4>
+                        <div class="chart-container">
+                            <canvas id="payoffChart" width="280" height="120"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <button class="action-btn" id="analyzeBtn">
+                        📈 Analyze Current Stock
+                    </button>
+                    <button class="action-btn" id="compareBtn">
+                        ⚖️ Compare Strategies
+                    </button>
+                </div>
+            </div>
+
+            <!-- Calculator Tab -->
+            <div id="calculator" class="tab-panel">
+                <div class="calculator-section">
+                    <h4>Options Calculator</h4>
+                    
+                    <div class="input-group">
+                        <label for="stockPrice">Stock Price ($)</label>
+                        <input type="number" id="stockPrice" value="100" step="0.01">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="strikePrice">Strike Price ($)</label>
+                        <input type="number" id="strikePrice" value="105" step="0.01">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="optionPrice">Option Price ($)</label>
+                        <input type="number" id="optionPrice" value="2.50" step="0.01">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="daysToExpiry">Days to Expiry</label>
+                        <input type="number" id="daysToExpiry" value="30" min="1">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="volatility">Implied Volatility (%)</label>
+                        <input type="number" id="volatility" value="25" step="0.1">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="interestRate">Risk-Free Rate (%)</label>
+                        <input type="number" id="interestRate" value="2.0" step="0.1">
+                    </div>
+
+                    <div class="calculator-actions">
+                        <button class="calc-btn" id="calculateBtn">Calculate</button>
+                        <button class="calc-btn secondary" id="clearBtn">Clear</button>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <h4>Results</h4>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-label">Intrinsic Value</div>
+                            <div class="result-value" id="intrinsicValue">$0.00</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Time Value</div>
+                            <div class="result-value" id="timeValue">$0.00</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Delta</div>
+                            <div class="result-value" id="delta">0.000</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Gamma</div>
+                            <div class="result-value" id="gamma">0.000</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Theta</div>
+                            <div class="result-value" id="theta">0.000</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Vega</div>
+                            <div class="result-value" id="vega">0.000</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="probability-section">
+                    <h4>Probability Analysis</h4>
+                    <div class="probability-grid">
+                        <div class="prob-item">
+                            <div class="prob-label">ITM Probability</div>
+                            <div class="prob-value" id="itmProbability">0%</div>
+                        </div>
+                        <div class="prob-item">
+                            <div class="prob-label">OTM Probability</div>
+                            <div class="prob-value" id="otmProbability">0%</div>
+                        </div>
+                        <div class="prob-item">
+                            <div class="prob-label">Breakeven Price</div>
+                            <div class="prob-value" id="breakevenPrice">$0.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Tab -->
+            <div id="education" class="tab-panel">
+                <div class="education-grid">
+                    <div class="edu-card">
+                        <div class="edu-icon">📚</div>
+                        <h4>Options Basics</h4>
+                        <p>Learn the fundamentals of options trading, including calls, puts, and basic terminology.</p>
+                        <button class="edu-btn" data-topic="basics">Start Learning</button>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">📈</div>
+                        <h4>Greeks</h4>
+                        <p>Master the Greeks - Delta, Gamma, Theta, Vega, and Rho - and how they affect option pricing.</p>
+                        <button class="edu-btn" data-topic="greeks">Learn Greeks</button>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">🎯</div>
+                        <h4>Strategies</h4>
+                        <p>Explore advanced trading strategies for different market conditions and risk profiles.</p>
+                        <button class="edu-btn" data-topic="strategies">View Strategies</button>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">⚠️</div>
+                        <h4>Risk Management</h4>
+                        <p>Understand the risks involved in options trading and how to manage them effectively.</p>
+                        <button class="edu-btn" data-topic="risk">Risk Management</button>
+                    </div>
+                </div>
+
+                <div class="glossary-section">
+                    <h4>Quick Glossary</h4>
+                    <div class="glossary-grid">
+                        <div class="glossary-item">
+                            <div class="term">Call Option</div>
+                            <div class="definition">Right to buy underlying asset at strike price</div>
+                        </div>
+                        <div class="glossary-item">
+                            <div class="term">Put Option</div>
+                            <div class="definition">Right to sell underlying asset at strike price</div>
+                        </div>
+                        <div class="glossary-item">
+                            <div class="term">Strike Price</div>
+                            <div class="definition">Price at which option can be exercised</div>
+                        </div>
+                        <div class="glossary-item">
+                            <div class="term">Expiration</div>
+                            <div class="definition">Date when option contract expires</div>
+                        </div>
+                        <div class="glossary-item">
+                            <div class="term">Premium</div>
+                            <div class="definition">Price paid for option contract</div>
+                        </div>
+                        <div class="glossary-item">
+                            <div class="term">ITM/OTM</div>
+                            <div class="definition">In-the-money / Out-of-the-money</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <h4>Pro Tips</h4>
+                    <div class="tips-list">
+                        <div class="tip-item">
+                            <div class="tip-number">1</div>
+                            <div class="tip-content">
+                                <div class="tip-title">Start with Paper Trading</div>
+                                <div class="tip-text">Practice strategies without real money to build confidence</div>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-number">2</div>
+                            <div class="tip-content">
+                                <div class="tip-title">Understand Time Decay</div>
+                                <div class="tip-text">Options lose value as expiration approaches (Theta)</div>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-number">3</div>
+                            <div class="tip-content">
+                                <div class="tip-title">Manage Position Size</div>
+                                <div class="tip-text">Never risk more than 1-2% of portfolio on single trade</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="status">
+                <span class="status-dot"></span>
+                <span>Educational Tool</span>
+            </div>
+            <div class="footer-actions">
+                <button id="refreshBtn" class="icon-btn" title="Refresh">🔄</button>
+                <button id="expandBtn" class="icon-btn" title="Open Full View">🔍</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/popup.js"></script>
+</body>
+</html>

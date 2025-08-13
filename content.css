@@ -1,0 +1,221 @@
+/* OptionsPro Content Script Styles */
+
+.optionspro-highlight {
+    background-color: #dbeafe;
+    padding: 2px 4px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid #3b82f6;
+}
+
+.optionspro-highlight:hover {
+    background-color: #bfdbfe;
+    transform: scale(1.05);
+}
+
+.optionspro-highlight.call-term {
+    background-color: #dcfce7;
+    border-bottom-color: #16a34a;
+}
+
+.optionspro-highlight.call-term:hover {
+    background-color: #bbf7d0;
+}
+
+.optionspro-highlight.put-term {
+    background-color: #fee2e2;
+    border-bottom-color: #dc2626;
+}
+
+.optionspro-highlight.put-term:hover {
+    background-color: #fecaca;
+}
+
+.optionspro-highlight.strike-term {
+    background-color: #fef3c7;
+    border-bottom-color: #d97706;
+}
+
+.optionspro-highlight.strike-term:hover {
+    background-color: #fde68a;
+}
+
+.optionspro-highlight.expiration-term {
+    background-color: #e0e7ff;
+    border-bottom-color: #6366f1;
+}
+
+.optionspro-highlight.expiration-term:hover {
+    background-color: #c7d2fe;
+}
+
+.optionspro-highlight.premium-term {
+    background-color: #fce7f3;
+    border-bottom-color: #ec4899;
+}
+
+.optionspro-highlight.premium-term:hover {
+    background-color: #fbcfe8;
+}
+
+.optionspro-highlight.greek-term {
+    background-color: #ddd6fe;
+    border-bottom-color: #8b5cf6;
+}
+
+.optionspro-highlight.greek-term:hover {
+    background-color: #c4b5fd;
+}
+
+.optionspro-tooltip {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+    max-width: 300px;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1f293b;
+}
+
+.optionspro-tooltip h3 {
+    margin: 0 0 8px 0;
+    color: #1f2937;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.optionspro-tooltip p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.optionspro-tooltip button {
+    margin-top: 12px;
+    padding: 6px 12px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
+}
+
+.optionspro-tooltip button:hover {
+    background: #2563eb;
+}
+
+#optionspro-widget {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 280px;
+    background: white;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1f293b;
+}
+
+#optionspro-widget .widget-header {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f8fafc;
+}
+
+#optionspro-widget .widget-title {
+    margin: 0;
+    color: #1f2937;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#optionspro-widget .widget-content {
+    padding: 12px;
+}
+
+#optionspro-widget .widget-close {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #6b7280;
+    transition: color 0.2s;
+}
+
+#optionspro-widget .widget-close:hover {
+    color: #374151;
+}
+
+#optionspro-widget .data-display {
+    margin-bottom: 8px;
+    padding: 6px;
+    background: #f9fafb;
+    border-radius: 4px;
+}
+
+#optionspro-widget .data-label {
+    font-size: 11px;
+    color: #6b7280;
+    margin-bottom: 2px;
+}
+
+#optionspro-widget .data-value {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1f293b;
+}
+
+#optionspro-widget .analyze-btn {
+    width: 100%;
+    padding: 6px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    margin-top: 8px;
+    transition: background-color 0.2s;
+}
+
+#optionspro-widget .analyze-btn:hover {
+    background: #2563eb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #optionspro-widget {
+        width: 250px;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+/* Animation for highlights */
+@keyframes optionspro-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+}
+
+.optionspro-highlight.new {
+    animation: optionspro-pulse 1s ease-in-out;
+}

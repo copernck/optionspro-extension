@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptionsPro - Full Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">📊</div>
+                <h1>OptionsPro</h1>
+            </div>
+            <nav class="navigation">
+                <a href="#" class="nav-item active" data-tab="strategies">🎓 Strategies</a>
+                <a href="#" class="nav-item" data-tab="calculator">🧮 Calculator</a>
+                <a href="#" class="nav-item" data-tab="education">📚 Education</a>
+            </nav>
+            <div class="footer">
+                <p>Educational Tool</p>
+                <p>Version 1.0.0</p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <!-- Strategies Content -->
+            <div id="strategies" class="content-panel active">
+                <div class="panel-header">
+                    <h2>Options Trading Strategies</h2>
+                    <select id="strategySelect">
+                        <!-- Options will be populated by JS -->
+                    </select>
+                </div>
+                <div class="strategy-details-grid">
+                    <div class="strategy-card main-card">
+                        <h3 id="strategyName">Covered Call</h3>
+                        <div class="strategy-difficulty" id="strategyDifficulty">Beginner</div>
+                        <p id="strategyDescription">A covered call involves holding a long position in a stock and selling call options on the same stock to generate income.</p>
+                        <h4>Setup:</h4>
+                        <div id="setupSteps">
+                            <div class="step">• Buy 100 shares of stock</div>
+                            <div class="step">• Sell 1 call option (usually OTM)</div>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>Market Outlook</h4>
+                        <p id="marketOutlook">Neutral to Bullish</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>Max Profit</h4>
+                        <p id="maxProfit">Limited</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>Max Loss</h4>
+                        <p id="maxLoss">Significant</p>
+                    </div>
+                    <div class="strategy-card payoff-card">
+                        <h4>Payoff Diagram</h4>
+                        <canvas id="payoffChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculator Content -->
+            <div id="calculator" class="content-panel">
+                <div class="panel-header">
+                    <h2>Black-Scholes Options Calculator</h2>
+                </div>
+                <div class="calculator-grid">
+                    <div class="input-card">
+                        <h4>Inputs</h4>
+                        <div class="input-group">
+                            <label for="stockPrice">Stock Price ($)</label>
+                            <input type="number" id="stockPrice" value="100" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label for="strikePrice">Strike Price ($)</label>
+                            <input type="number" id="strikePrice" value="105" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label for="daysToExpiry">Days to Expiry</label>
+                            <input type="number" id="daysToExpiry" value="30" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label for="volatility">Implied Volatility (%)</label>
+                            <input type="number" id="volatility" value="25" step="0.1">
+                        </div>
+                         <div class="input-group">
+                            <label for="interestRate">Risk-Free Rate (%)</label>
+                            <input type="number" id="interestRate" value="2.0" step="0.1">
+                        </div>
+                    </div>
+                    <div class="results-card">
+                        <h4>Calculated Greeks</h4>
+                        <div class="greeks-grid">
+                            <div class="metric-box"><span class="label">Delta</span><span id="delta">0.000</span></div>
+                            <div class="metric-box"><span class="label">Gamma</span><span id="gamma">0.000</span></div>
+                            <div class="metric-box"><span class="label">Theta</span><span id="theta">0.000</span></div>
+                            <div class="metric-box"><span class="label">Vega</span><span id="vega">0.000</span></div>
+                        </div>
+                        <h4>Valuation</h4>
+                         <div class="greeks-grid">
+                            <div class="metric-box"><span class="label">Intrinsic Value</span><span id="intrinsicValue">$0.00</span></div>
+                            <div class="metric-box"><span class="label">Time Value</span><span id="timeValue">$0.00</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Content -->
+            <div id="education" class="content-panel">
+                 <div class="panel-header">
+                    <h2>Educational Center</h2>
+                </div>
+                <div class="education-grid">
+                     <div class="edu-card">
+                        <h4>📚 Options Basics</h4>
+                        <p>Learn the fundamentals of options trading, including calls, puts, and basic terminology.</p>
+                    </div>
+                     <div class="edu-card">
+                        <h4>📈 The Greeks</h4>
+                        <p>Master Delta, Gamma, Theta, and Vega and how they affect option pricing.</p>
+                    </div>
+                     <div class="edu-card">
+                        <h4>🎯 Core Strategies</h4>
+                        <p>Explore foundational trading strategies for different market conditions and risk profiles.</p>
+                    </div>
+                     <div class="edu-card">
+                        <h4>⚠️ Risk Management</h4>
+                        <p>Understand the risks involved in options trading and how to manage them effectively.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
+

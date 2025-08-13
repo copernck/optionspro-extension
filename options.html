@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>OptionsPro Settings</title>
+    <link rel="stylesheet" href="css/settings.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="settings-container">
+        <div class="settings-header">
+            <div class="logo">
+                <div class="logo-icon">📊</div>
+                <div>
+                    <h1>OptionsPro Settings</h1>
+                    <p>Configure your options trading preferences</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-content">
+            <!-- General Settings -->
+            <div class="settings-section">
+                <h2>General Settings</h2>
+                <div class="setting-item">
+                    <label for="defaultStrategy">Default Strategy</label>
+                    <select id="defaultStrategy">
+                        <option value="covered-call">Covered Call</option>
+                        <option value="protective-put">Protective Put</option>
+                        <option value="straddle">Straddle</option>
+                        <option value="strangle">Strangle</option>
+                        <option value="iron-condor">Iron Condor</option>
+                        <option value="butterfly">Butterfly Spread</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="defaultCalculator">Default Calculator Type</label>
+                    <select id="defaultCalculator">
+                        <option value="basic">Basic Calculator</option>
+                        <option value="advanced">Advanced Calculator</option>
+                        <option value="probability">Probability Calculator</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="theme">Theme</label>
+                    <select id="theme">
+                        <option value="dark" selected>Dark</option>
+                        <option value="light">Light</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Calculator Settings -->
+            <div class="settings-section">
+                <h2>Calculator Settings</h2>
+                <div class="setting-item">
+                    <label for="defaultVolatility">Default Volatility (%)</label>
+                    <input type="number" id="defaultVolatility" min="1" max="200" value="25" step="0.1">
+                </div>
+                <div class="setting-item">
+                    <label for="defaultInterestRate">Default Interest Rate (%)</label>
+                    <input type="number" id="defaultInterestRate" min="0" max="20" value="2.0" step="0.1">
+                </div>
+                <div class="setting-item">
+                    <label for="autoCalculate">Auto-calculate on Input</label>
+                    <input type="checkbox" id="autoCalculate" checked>
+                </div>
+                <div class="setting-item">
+                    <label for="showGreeks">Show Advanced Greeks</label>
+                    <input type="checkbox" id="showGreeks" checked>
+                </div>
+            </div>
+
+            <!-- Display Options -->
+            <div class="settings-section">
+                <h2>Display Options</h2>
+                <div class="setting-item">
+                    <label for="showAnimations">Show Animations</label>
+                    <input type="checkbox" id="showAnimations" checked>
+                </div>
+                <div class="setting-item">
+                    <label for="showTooltips">Show Educational Tooltips</label>
+                    <input type="checkbox" id="showTooltips" checked>
+                </div>
+                <div class="setting-item">
+                    <label for="highlightTerms">Highlight Options Terms</label>
+                    <input type="checkbox" id="highlightTerms" checked>
+                </div>
+                <div class="setting-item">
+                    <label for="showWidget">Show Page Widget</label>
+                    <input type="checkbox" id="showWidget">
+                </div>
+            </div>
+
+            <!-- Risk Management -->
+            <div class="settings-section">
+                <h2>Risk Management</h2>
+                <div class="setting-item">
+                    <label for="maxPositionSize">Max Position Size (%)</label>
+                    <input type="number" id="maxPositionSize" min="1" max="100" value="2" step="0.1">
+                </div>
+                <div class="setting-item">
+                    <label for="riskWarning">Show Risk Warnings</label>
+                    <input type="checkbox" id="riskWarning" checked>
+                </div>
+                <div class="setting-item">
+                    <label for="paperTrading">Paper Trading Mode</label>
+                    <input type="checkbox" id="paperTrading">
+                </div>
+            </div>
+
+            <!-- Educational Features -->
+            <div class="settings-section">
+                <h2>Educational Features</h2>
+                <div class="setting-item">
+                    <label for="showTips">Show Pro Tips</label>
+                    <input type="checkbox" id="showTips" checked>
+                </div>
+                <div class="setting-item">
+                    <label for="explainStrategies">Explain Strategies</label>
+                    <input type="checkbox" id="explainStrategies" checked>
+                </div>
+                <div class="setting-item">
+                    <label for="glossaryEnabled">Enable Glossary</label>
+                    <input type="checkbox" id="glossaryEnabled" checked>
+                </div>
+            </div>
+
+            <!-- Data Sources -->
+            <div class="settings-section">
+                <h2>Data Sources</h2>
+                <div class="setting-item">
+                    <label for="useYahooFinance">Use Yahoo Finance Data</label>
+                    <input type="checkbox" id="useYahooFinance" checked>
+                </div>
+                <div class="setting-item">
+                    <label for="useAlphaVantage">Use Alpha Vantage API</label>
+                    <input type="checkbox" id="useAlphaVantage">
+                </div>
+                <div class="setting-item">
+                    <label for="apiTimeout">API Timeout (seconds)</label>
+                    <input type="number" id="apiTimeout" min="5" max="60" value="30">
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="settings-section">
+                <h2>Actions</h2>
+                <div class="action-buttons">
+                    <button id="saveSettings" class="btn-primary">Save Settings</button>
+                    <button id="resetSettings" class="btn-secondary">Reset to Defaults</button>
+                    <button id="exportSettings" class="btn-secondary">Export Settings</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-footer">
+            <div class="support-info">
+                <p>Need help? Contact us at <a href="mailto:tamiusobserver@gmail.com">tamiusobserver@gmail.com</a></p>
+                <p>Version 1.0.0</p>
+                <p class="disclaimer">OptionsPro is an educational tool. Not financial advice.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/settings.js"></script>
+</body>
+</html>
